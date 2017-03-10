@@ -1,0 +1,8 @@
+config MTK_BMA056
+	bool "MTK_MTK_BMA056 for MediaTek package"
+	default n
+	help
+	  It support different accelerometer sensor.
+          If this option is set,
+	  it will support
+          MTK_MTK_BMA056 Accelerometer.
