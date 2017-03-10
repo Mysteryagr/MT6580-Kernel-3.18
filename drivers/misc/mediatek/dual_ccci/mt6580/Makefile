@@ -14,6 +14,7 @@ ccci_plat-y +=src/ccci_settings.o
 
 #ldflags-y += --whole-archive $(ext-libs)  --no-whole-archive
 
+subdir-ccflags-y += -Wno-error=date-time
 ccflags-y  += -I$(srctree)/drivers/misc/mediatek/dual_ccci/include
 ccflags-y  += -I$(CCCI_CORE_DRIVER_DIR)/include -I$(srctree)/$(obj)/include
 
