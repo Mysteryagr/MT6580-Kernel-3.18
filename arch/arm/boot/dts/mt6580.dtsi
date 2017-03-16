@@ -763,6 +763,14 @@
 			compatible = "mediatek,mt6580-accdet";
 		};
 
+		flashlight_led: flashlight_led {
+			compatible = "mediatek,mt6580-flashlight";
+		};
+
+		sgm_led: sgm_led {
+			compatible = "mediatek,sgm3146";
+		};
+
 		gse_1: gse_1 {
 			compatible = "mediatek, gse_1-eint";
 			status = "disabled";
