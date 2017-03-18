@@ -188,6 +188,10 @@ NSFeature :  : RAWSensorInfo < _id >  :  : getFlickerPara \
 #define HI704_SENSOR_ID                         0x0096
 #define HI551_SENSOR_ID                         0x0551
 #define HI545MIPI_SENSOR_ID                     0x0545
+#define SUB_HI545_2LANE_MIPI_SENSOR_ID          0x0544
+#define HI545_2LANE_MIPI_SENSOR_ID              0x0545
+#define HI545_2LANE_SENSOR_ID  					0x0545
+#define SYX_HI545_SENSOR_ID  					0x0546
 #define HI544MIPI_SENSOR_ID                     0x0544
 #define HI542_SENSOR_ID                         0x00B1
 #define HI542MIPI_SENSOR_ID                     0x00B1
@@ -223,6 +227,7 @@ NSFeature :  : RAWSensorInfo < _id >  :  : getFlickerPara \
 #define MT9P017MIPI_SENSOR_ID                   0x4800
 #define MT9T113MIPI_SENSOR_ID                   0x4680
 /*GC*/
+#define GC2755_SENSOR_ID                        0x2655
 #define GC2355_SENSOR_ID                        0x2355
 #define GC2235_SENSOR_ID                        0x2235
 #define GC2035_SENSOR_ID                        0x2035
@@ -359,6 +364,9 @@ NSFeature :  : RAWSensorInfo < _id >  :  : getFlickerPara \
 #define SENSOR_DRVNAME_HI704_YUV                "hi704yuv"
 #define SENSOR_DRVNAME_HI551_MIPI_RAW           "hi551mipiraw"
 #define SENSOR_DRVNAME_HI545_MIPI_RAW           "hi545mipiraw"
+#define SENSOR_DRVNAME_SYX_HI545_MIPI_RAW           "syx_hi545mipiraw"
+#define SENSOR_DRVNAME_SUB_HI545_2LANE_MIPI_RAW     "sub_hi545mipiraw2Lane"
+#define SENSOR_DRVNAME_HI545_2LANE_MIPI_RAW     "hi545mipiraw2Lane"
 #define SENSOR_DRVNAME_HI542_RAW                "hi542raw"
 #define SENSOR_DRVNAME_HI542MIPI_RAW            "hi542mipiraw"
 #define SENSOR_DRVNAME_HI544_MIPI_RAW           "hi544mipiraw"
@@ -379,6 +387,7 @@ NSFeature :  : RAWSensorInfo < _id >  :  : getFlickerPara \
 #define SENSOR_DRVNAME_MT9T113_MIPI_YUV         "mt9t113mipiyuv"
 /*GC*/
 #define SENSOR_DRVNAME_GC2035_YUV               "gc2035_yuv"
+#define SENSOR_DRVNAME_GC2755_MIPI_RAW          "gc2755mipiraw"
 #define SENSOR_DRVNAME_GC2235_RAW               "gc2235_raw"
 #define SENSOR_DRVNAME_GC2355_MIPI_RAW          "gc2355mipiraw"
 #define SENSOR_DRVNAME_GC0330_YUV               "gc0330_yuv"
