@@ -23,6 +23,10 @@ LCM_DRIVER *lcm_driver_list[] = {
 #if defined(MTK_LCM_DEVICE_TREE_SUPPORT)
 	&lcm_common_drv,
 #else
+#if defined(NT35521_DSI_VDO_YUSHUN_CMI_HD720)
+	&nt35521_dsi_vdo_yushun_cmi_hd720_lcm_drv,
+#endif
+
 #if defined(ILI9881C_HD_DSI_VDO_3LANES_DJ)
 	&ili9881c_hd_dsi_vdo_3lanes_dj_lcm_drv,
 #endif
