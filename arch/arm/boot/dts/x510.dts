@@ -67,7 +67,7 @@
 
 	vibrator@0 {
 		compatible = "mediatek,vibrator";
-		vib_timer = <25>;
+		vib_timer = <19>;
 		vib_limit = <9>;
 		vib_vol = <6>;
 	};
@@ -86,7 +86,7 @@
 
 	/*  start sensor */
 	cust_accel@0 {
-		compatible				= "mediatek,BMA222E_NEW"";
+		compatible				= "mediatek,BMA222";
 		i2c_num					= <2>;
 		i2c_addr				= <0x18 0 0 0>;
 		direction				= <7>;
@@ -132,7 +132,11 @@
 		firlen					= <0>;
 		is_batch_supported			= <0>;
 	};
-  /* end sensor */
+  	 /* end sensor */
+
+	mt-extmem@0 {
+		compatible = "mediatek,mt-extmem";
+	};
 };
 
 /* mmc start */
@@ -156,18 +160,21 @@
 	bus-width = <4>;
 	max-frequency = <208000000>;
 	msdc-sys-suspend;
+	sd_need_power;
 	cap-sd-highspeed;
 	sd-uhs-sdr12;
 	sd-uhs-sdr25;
 	sd-uhs-sdr50;
 	sd-uhs-sdr104;
-	non-removable;
+	//keep-power-in-suspend;
 	pinctl = <&mmc1_pins_default>;
 	pinctl_sdr104 = <&mmc1_pins_sdr104>;
 	pinctl_sdr50 = <&mmc1_pins_sdr50>;
 	pinctl_ddr50 = <&mmc1_pins_ddr50>;
 	register_setting = <&mmc1_register_setting_default>;
 	host_function = /bits/ 8 <MSDC_SD>;
+	cd_level = /bits/ 8 <MSDC_CD_HIGH>;
+	cd-gpios = <&pio 3 0>;
 	status = "okay";
 };
 
@@ -319,7 +326,7 @@
 
 &accdet {
 	accdet-mic-vol = <7>;
-	headset-mode-setting = <0x500 0x200 0x1 0x1f0 0x800 0x800 0x20>;
+	headset-mode-setting = <0x500 0x200 1 0x1F0 0x800 0x800 0x20>;
 	accdet-plugout-debounce = <20>;
 	/*1:ACC mode, 2:low cost without in bias, 6:low cost with in bias*/
 	accdet-mic-mode = <1>;
@@ -345,12 +352,10 @@
 	};
 };
 /*ACCDET END*/
-
 /* TOUCH GPIO standardization */
 &touch {
-	vtouch-supply = <11>;
 	tpd-resolution = <720 1280>;
-	use-tpd-button = <1>;
+	use-tpd-button = <0>;
 	tpd-key-num = <3>;
 	tpd-key-local= <139 172 158 0>;
 	tpd-key-dim-local = <90 883 100 40 230 883 100 40 370 883 100 40 0 0 0 0>;
@@ -369,9 +374,13 @@
 	pinctrl-5 = <&ctp_pins_rst_output1>;
 	status = "okay";
 };
-
 &pio {
 	ctp_pins_default: toucheint5default {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO5__FUNC_EINT5>;
+			slew-rate = <0>;
+			bias-disable;
+		};
 	};
 	ctp_pins_eint_as_int: toucheint@5 {
 		pins_cmd_dat {
@@ -383,7 +392,7 @@
 	ctp_pins_eint_output0: eintoutput0 {
 		pins_cmd_dat {
 			pins = <PINMUX_GPIO5__FUNC_GPIO5>;
-			slew-rate = <0>;
+			slew-rate = <1>;
 			output-low;
 		};
 	};
@@ -410,75 +419,6 @@
 	};
 };
 /* TOUCH end */
-&i2c0 {
-			camera_main@10 {
-				compatible = "mediatek,camera_main";
-				reg = <0x10>;
-				status = "okay";
-			};
-
-			camera_main_af@0c {
-				compatible = "mediatek,camera_main_af";
-				reg = <0xc>;
-				status = "okay";
-			};
-
-			camera_sub@36 {
-				compatible = "mediatek,camera_sub";
-				reg = <0x36>;
-				status = "okay";
-			};
-		};
-&i2c1 {
-			cap_touch@5d {
-				compatible = "mediatek,cap_touch";
-				reg = <0x5d>;
-				status = "okay";
-			};
-
-			ext_buck@60 {
-				compatible = "mediatek,ext_buck";
-				reg = <0x60>;
-				status = "okay";
-			};
-
-			swithing_charger@6a {
-				compatible = "mediatek,swithing_charger";
-				reg = <0x6a>;
-				status = "okay";
-			};
-		};
-&i2c2 {
-			strobe_main@63 {
-				compatible = "mediatek,strobe_main";
-				reg = <0x63>;
-				status = "okay";
-			};
-
-			msensor@0d {
-				compatible = "mediatek,msensor";
-				reg = <0xd>;
-				status = "okay";
-			};
-
-			gsensor@18 {
-				compatible = "mediatek,gsensor";
-				reg = <0x18>;
-				status = "okay";
-			};
-
-			gyro@68 {
-				compatible = "mediatek,gyro";
-				reg = <0x68>;
-				status = "okay";
-			};
-
-			alsps@60 {
-				compatible = "mediatek,alsps";
-				reg = <0x60>;
-				status = "okay";
-			};
-		};
 
 /* USB GPIO Kernal Standardization start */
 &pio {
@@ -717,9 +657,9 @@
 	pinctrl-16 = <&camera_pins_cam_mclk2_disable>;
 
 	status = "okay";
+
 };
 /* CAMERA GPIO end */
-
 /*flashlight gpio start*/
 &pio{
 	flashlight_pins_default: default{
@@ -772,7 +712,6 @@
 	status = "okay";
 };
 /*flashlight gpio end*/
-
 /* CONSYS GPIO standardization */
 &pio {
 	consys_pins_default: default {
