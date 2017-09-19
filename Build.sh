@@ -24,7 +24,6 @@ export ARCH=arm ARCH_MTK_PLATFORM=mt6580
 #Defconfig for Infinix Hot 2
 #make -C $PWD O=$PWD/out ARCH=arm x510_defconfig
 
-
 #Defconfig for Infinix Hot  3
 make -C $PWD O=$PWD/out ARCH=arm x554_defconfig
 
